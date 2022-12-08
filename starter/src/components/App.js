@@ -5,7 +5,7 @@ import SearchBooks from './SearchBooks';
 function App() {
   return (
     <Routes>
-      <Route path='/' element={<Shelves />} />
+      <Route path='/' element={<Shelves/>} />
       <Route path='/search' element={<SearchBooks/>}/>
     </Routes>
   );
