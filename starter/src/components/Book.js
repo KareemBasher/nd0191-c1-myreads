@@ -3,7 +3,7 @@ import { get, update } from '../BooksAPI'
 import '../App.css'
 import BookShelfChanger from './BookShelfChanger'
 
-const Book = ({ id }) => {
+const Book = ({ id, updateBook }) => {
   const [book, setBook] = useState()
   const [isLoading, setIsLoading] = useState(true)
 
@@ -18,6 +18,10 @@ const Book = ({ id }) => {
 
   const changeShelf = async (shelf) => {
     await update(book, shelf)
+    const newBook = book
+    newBook.shelf = shelf
+    setBook(newBook)
+    updateBook(newBook)
   }
 
   if (isLoading) {

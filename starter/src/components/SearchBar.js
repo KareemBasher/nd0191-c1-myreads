@@ -2,7 +2,7 @@ import React from 'react'
 import CloseSearchButton from './CloseSearchButton'
 import '../App.css'
 
-const SearchBar = () => {
+const SearchBar = ({ searchQuery, handleOnChange }) => {
   return (
     <div className="search-books-bar">
         <CloseSearchButton/>
@@ -10,6 +10,8 @@ const SearchBar = () => {
             <input
                 type="text"
                 placeholder="Search by title, author, or ISBN"
+                value={searchQuery}
+                onChange={(e) => handleOnChange(e)}
             />
         </div>
     </div>

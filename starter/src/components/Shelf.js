@@ -2,7 +2,7 @@ import React from 'react'
 import '../App.css'
 import Book from './Book'
 
-const Shelf = ({ shelfName, books }) => {
+const Shelf = ({ shelfName, books, updateBook }) => {
   return (
     <div>
         <div className="bookshelf">
@@ -10,7 +10,7 @@ const Shelf = ({ shelfName, books }) => {
         <div className="bookshelf-books">
             <ol className="books-grid">
             {books.map(({id}) => (
-              <Book key={id} id={id} />
+              <Book key={id} id={id} updateBook={updateBook} />
             ))}
             </ol>
         </div>

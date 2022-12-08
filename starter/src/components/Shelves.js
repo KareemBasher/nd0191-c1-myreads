@@ -5,17 +5,24 @@ import * as booksAPI from '../BooksAPI'
 import '../App.css'
 
 const Shelves = () => {
-    const [books, SetBooks] = useState()
+    const [books, setBooks] = useState()
     const [isLoading, setIsLoading] = useState(true)
     
     useEffect(() => {
         const getAllBooks = async () => {
-            SetBooks(await booksAPI.getAll())
+            setBooks(await booksAPI.getAll())
             setIsLoading(false)
         }
 
         getAllBooks()
     }, [])
+
+    const updateBook = (book) => {
+        const bookIndex = books.findIndex(({ id }) => book.id === id)
+        const newBooks = [...books]
+        newBooks[bookIndex] = book
+        setBooks(newBooks)
+    }
 
     if (isLoading) {
         return (
@@ -28,13 +35,13 @@ const Shelves = () => {
                 <h1>MyReads</h1>
             </div>
 
-            <Shelf shelfName={'Currently Reading'}
+            <Shelf shelfName={'Currently Reading'} updateBook={updateBook}
                 books={books.filter(({ shelf }) => shelf === 'currentlyReading')}
             />
-            <Shelf shelfName={'Want to Read'}
+            <Shelf shelfName={'Want to Read'} updateBook={updateBook}
                 books={books.filter(({ shelf }) => shelf === 'wantToRead')}
             />
-            <Shelf shelfName={'Read'}
+            <Shelf shelfName={'Read'} updateBook={updateBook}
                 books={books.filter(({ shelf }) => shelf === 'read')}
             />
             

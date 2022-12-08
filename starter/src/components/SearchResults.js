@@ -1,32 +1,26 @@
 import React, { useState, useEffect } from 'react'
 import '../App.css'
-import { getAll } from '../BooksAPI'
 import Book from './Book'
 
-const SearchResults = () => {
-  const [books, setBooks] = useState()
-  const [isLoading, setIsLoading] = useState(true)
+const SearchResults = ({ showingBooks }) => {
+  const [books, setBooks] = useState(showingBooks)
 
   useEffect(() => {
-    const getAllBooks = async () => {
-      setBooks(await getAll())
-      setIsLoading((false))
-    }
+    setBooks(showingBooks)
+  }, [showingBooks])
 
-    getAllBooks()
-  })
-
-  if (isLoading) {
-    return (
-      <div>Please wait...</div>
-    )
+  const updateBook = (book) => {
+    const bookIndex = books.findIndex(({ id }) => book.id === id)
+    const newBooks = [...books]
+    newBooks[bookIndex] = book
+    setBooks(newBooks)
   }
 
   return (
     <div className="search-books-results">
         <ol className="books-grid">
             {books.map(({id}) => (
-              <Book key={id} id={id}/>
+              <Book key={id} id={id} updateBook={updateBook}/>
             ))}
         </ol>
     </div>
