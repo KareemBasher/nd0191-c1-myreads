@@ -4,7 +4,7 @@ import SearchResults from './SearchResults'
 import '../App.css'
 import { search } from '../BooksAPI'
 
-const SearchBooks = () => {
+const SearchBooks = ({ changeShelf }) => {
   const [query, setQuery] = useState('')
   const [showingBooks, setShowingBooks] = useState()
 
@@ -28,7 +28,10 @@ const SearchBooks = () => {
   return (
     <div className="search-books">
         <SearchBar searchQuery={query} handleOnChange={handleOnChange} />
-        <SearchResults showingBooks={showingBooks?.error || query === ''? [] : showingBooks}/>  
+      <SearchResults
+        showingBooks={showingBooks?.error || query === '' ? [] : showingBooks}
+        changeShelf={changeShelf}
+      />  
     </div>
   )
 }

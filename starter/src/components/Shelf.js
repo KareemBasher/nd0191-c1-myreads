@@ -2,15 +2,19 @@ import React from 'react'
 import '../App.css'
 import Book from './Book'
 
-const Shelf = ({ shelfName, books, updateBook }) => {
+const Shelf = ({ shelfName, books, changeShelf }) => {
   return (
     <div>
         <div className="bookshelf">
         <h2 className="bookshelf-title">{shelfName}</h2>
         <div className="bookshelf-books">
             <ol className="books-grid">
-            {books.map(({id}) => (
-              <Book key={id} id={id} updateBook={updateBook} />
+            {books.map(book => (
+              <Book
+                key={book.id}
+                book={book}
+                changeShelf={changeShelf}
+              />
             ))}
             </ol>
         </div>

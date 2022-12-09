@@ -1,47 +1,22 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import SearchButton from './SearchButton'
 import Shelf from './Shelf'
-import * as booksAPI from '../BooksAPI'
 import '../App.css'
 
-const Shelves = () => {
-    const [books, setBooks] = useState()
-    const [isLoading, setIsLoading] = useState(true)
-    
-    useEffect(() => {
-        const getAllBooks = async () => {
-            setBooks(await booksAPI.getAll())
-            setIsLoading(false)
-        }
-
-        getAllBooks()
-    }, [])
-
-    const updateBook = (book) => {
-        const bookIndex = books.findIndex(({ id }) => book.id === id)
-        const newBooks = [...books]
-        newBooks[bookIndex] = book
-        setBooks(newBooks)
-    }
-
-    if (isLoading) {
-        return (
-            <div>Please wait...</div>
-        )
-    }
+const Shelves = ({books, changeShelf}) => {
     return (
         <div>
             <div className="list-books-title">
                 <h1>MyReads</h1>
             </div>
 
-            <Shelf shelfName={'Currently Reading'} updateBook={updateBook}
+            <Shelf shelfName={'Currently Reading'} changeShelf={changeShelf}
                 books={books.filter(({ shelf }) => shelf === 'currentlyReading')}
             />
-            <Shelf shelfName={'Want to Read'} updateBook={updateBook}
+            <Shelf shelfName={'Want to Read'} changeShelf={changeShelf}
                 books={books.filter(({ shelf }) => shelf === 'wantToRead')}
             />
-            <Shelf shelfName={'Read'} updateBook={updateBook}
+            <Shelf shelfName={'Read'} changeShelf={changeShelf}
                 books={books.filter(({ shelf }) => shelf === 'read')}
             />
             

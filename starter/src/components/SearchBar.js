@@ -3,16 +3,6 @@ import CloseSearchButton from './CloseSearchButton'
 import '../App.css'
 
 const SearchBar = ({ searchQuery, handleOnChange }) => {
-  const debounce = (callback, wait) => {
-    let timer
-    return (...args) => {
-      clearTimeout(timer)
-      timer = setTimeout(() => {
-        callback(...args)
-      }, wait)
-    }
-  }
-  
   return (
     <div className="search-books-bar">
         <CloseSearchButton/>

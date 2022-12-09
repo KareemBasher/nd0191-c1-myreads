@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
 
-const BookShelfChanger = ({ shelf, changeShelf }) => {
+const BookShelfChanger = ({ book, shelf, changeShelf }) => {
   const [bookShelf, setBookShelf] = useState(shelf)
 
   const handleOnClick = (e) => {
-    changeShelf(e.target.value)
+    changeShelf(book, e.target.value)
     setBookShelf(e.target.value)
   }
 
   return (
     <div className="book-shelf-changer">
-        <select defaultValue={bookShelf} onChange={(e) => handleOnClick(e)}>
-            <option value="none" disabled>
+        <select defaultValue={bookShelf? bookShelf : 'none'} onChange={(e) => handleOnClick(e)}>
+            <option value="move to" disabled>
                 Move to...
             </option>
             <option value="currentlyReading">
