@@ -6,8 +6,10 @@ The user can control where each book goes and also search for a book and control
 ## Installation
 
 `npm install` to install all dependancies.
+
 `npm start` to start the application on `localhost:3000`
 
 ## Routes
 `/` is The home page where the user can see all his/her books.
+
 `/search` is the search page where the user can search for books using the title, author name, or ISBN
