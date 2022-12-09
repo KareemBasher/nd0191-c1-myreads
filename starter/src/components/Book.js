@@ -8,12 +8,17 @@ const Book = ({ id, updateBook }) => {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    let isCanceled = false
     const getBook = async (id) => {
-      setBook(await get(id))
-      setIsLoading(false)
+      if (!isCanceled) {
+        setBook(await get(id))
+        setIsLoading(false)
+      }
     }
 
-    getBook(id)
+    if (!isCanceled) getBook(id)
+
+    return () => isCanceled = true
   }, [id])
 
   const changeShelf = async (shelf) => {

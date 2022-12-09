@@ -19,9 +19,11 @@ const SearchResults = ({ showingBooks }) => {
   return (
     <div className="search-books-results">
         <ol className="books-grid">
-            {books.map(({id}) => (
-              <Book key={id} id={id} updateBook={updateBook}/>
-            ))}
+            {
+              books && books.map(({id}) => (
+                <Book key={id} id={id} updateBook={updateBook}/>
+              ))
+            }
         </ol>
     </div>
   )
